@@ -2,8 +2,8 @@
 output_filename = "../data/vmc_playground.csv"
 import numpy as np
 
-nparticles = 4
-dim = 3
+nparticles = 2
+dim = 2
 n_hidden = 10
 init_scale =  0.3
 
@@ -15,7 +15,7 @@ WF_scale = 1 # This is the decider between using psi =sqrt(F) [2] or psi = F [1]
 particle_type = "bosons" # either "bosons" or "fermions"
 max_degree = nparticles // 2
 
-nsamples =  int(2**14) #  2**18 = 262144
+nsamples =  int(2**16) #  2**18 = 262144
 scale = 1+ (dim-1)*0.1
 nchains = 4# number of Markov chains
 mcmc_alg = "mh" # eiteer "mh" or "m"
@@ -29,7 +29,7 @@ batch_size = 200
 
 
 hamiltonian = "ho" # either ho or eo 
-interaction = "None" # either Coulomb or None
+interaction = "Coulomb" # either Coulomb or None
 
 detailed = True
 wf_type = "vmc" 

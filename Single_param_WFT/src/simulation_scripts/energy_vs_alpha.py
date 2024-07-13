@@ -31,7 +31,7 @@ All the parameters you want to change are contained in the file config.py
 """
 # set up the system with its backend and level of logging, seed, and other general properties depending on how you want to run it
 
-alpha_values = np.array([ 0.2 , 0.3 , 0.4 , 0.5 , 0.6 , 0.7 , 0.8  ,1.5  ])
+alpha_values = np.array([ 0.2 , 0.3 , 0.4 , 0.5 , 0.6 , 0.7 , 0.8   ])
 energies = []
 variances = []
 error = []
@@ -108,6 +108,6 @@ print("Variances", variances)
 
 np.savetxt(f"data_analysis/alpha_values_plot_{config.particle_type}_{config.nparticles}.dat", alpha_values)
 np.savetxt(f"data_analysis/energies_{config.particle_type}_{config.nparticles}.dat", energies)
-np.savetxt(f"data_analysis/errors_{config.particle_type}_{config.nparticles}.dat", error)
+np.savetxt(f"data_analysis/variances_{config.particle_type}_{config.nparticles}.dat", variances)
 
 

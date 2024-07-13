@@ -169,12 +169,16 @@ class VMC:
         g = -alpha * jnp.sum(
             self.beta**2 * (r[:, 0] ** 2) + jnp.sum(r[:, 1:] ** 2, axis=1)
         )
-
+        
         distances = self.pairwise_distances(r, epsilon)
-
+    
+        """
         jastrow_f = self.jastrow_factor_f(distances, self.radius, epsilon)
 
         f = jnp.sum(jnp.log(jastrow_f + epsilon))
+        """
+
+        f = jnp.sum(distances / ( 1 + 2* alpha * distances))
 
         wf = g + f
  

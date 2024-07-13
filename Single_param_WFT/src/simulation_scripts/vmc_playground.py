@@ -78,7 +78,7 @@ alphas ,energies , cycles = system.train(
 )
 
 # now we get the results or do whatever we want with them
-results , sampled_positions , _  = system.sample(config.nsamples, nchains=config.nchains, seed=config.seed)
+results , sampled_positions , local_energies  = system.sample(config.nsamples, nchains=config.nchains, seed=config.seed)
 
 end_time = time.time()
 execution_time = end_time - start_time
@@ -86,9 +86,16 @@ execution_time = end_time - start_time
 sampled_positions = np.array(sampled_positions).reshape(-1, config.nparticles, config.dim)
 sampled_positions = np.linalg.norm(sampled_positions, axis=2)
 
+np.savetxt(f"data_analysis/alphas_{config.particle_type}_{config.nparticles}.dat", alphas)
+np.savetxt(f"data_analysis/energies_{config.particle_type}_{config.nparticles}.dat", energies)
+np.savetxt(f"data_analysis/cycles_{config.particle_type}_{config.nparticles}.dat", cycles)
+np.savetxt(f"data_analysis/sampled_positions_{config.particle_type}_{config.nparticles}_{config.nsamples}.dat", sampled_positions)
+
+
 # display the results
 print("Metrics: ", results)
 print("Result Energy: ", results.energy)
+print("Variance: ", results.variance)
 print(f"Acceptance rate: {results.accept_rate}")
 
 print(f"Execution time: {execution_time} seconds")
@@ -97,9 +104,5 @@ print(f"Execution time: {execution_time} seconds")
 
 #plot alphas vs cycles
 
-np.savetxt(f"data_analysis/alphas_{config.particle_type}_{config.nparticles}.dat", alphas)
-np.savetxt(f"data_analysis/energies_{config.particle_type}_{config.nparticles}.dat", energies)
-np.savetxt(f"data_analysis/cycles_{config.particle_type}_{config.nparticles}.dat", cycles)
-np.savetxt(f"data_analysis/sampled_positions_{config.particle_type}_{config.nparticles}_{config.nsamples}.dat", sampled_positions)
 
 
